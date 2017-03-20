@@ -97,8 +97,6 @@ Rails.application.configure do
       s3_region: ENV.fetch('AWS_REGION')
     }
   }
-  #bucket: arn:aws:s3:::imgrrr
-  #user: arn:aws:iam::909474188387:user/imgrrr
 
 
 end

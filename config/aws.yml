@@ -1,8 +1,0 @@
-# See 'aws-sdk'
-# More info: https://github.com/thoughtbot/paperclip/wiki/Paperclip-with-Amazon-S3
-#            http://www.rubydoc.info/gems/paperclip/Paperclip/Storage/S3
-
-# development:
-# production:
-# access_key_id: ENV['AWS_ACCESS_KEY_ID']
-# secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']

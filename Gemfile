@@ -46,7 +46,7 @@ gem 'aws-sdk', '~> 2.3'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'simple_form'
 
-gem 'unsplash' #Unsplash::Photo.random
+gem 'unsplash'
 gem 'ffaker'
 
 
