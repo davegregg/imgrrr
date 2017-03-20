@@ -1,0 +1,27 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-3 text-center">
+            <%= link_to user, class: 'btn btn-default' do %>
+              <%= image_tag user.avatar, class: 'img-responsive' %>
+            <% end %>
+            <h3><strong>&ldquo;</strong><%= user.username %><strong>&rdquo;</strong></h3>
+        </div>
+        <div class="col-lg-9">
+
+            <% user.galleries.each do |g| %>
+              <div class="col-lg-3 text-center">
+                  <%= link_to g, {class: 'thumbnail', target: '_blank'} do %>
+                    <%= simple_format g.title, class: 'bg-primary' %>
+                    <% most_recent_image = g.images.last %>
+                    <%= image_tag most_recent_image.file.url(:thumb), class: 'img-responsive' %>
+                    <%= simple_format most_recent_image.title, class: 'caption' %>
+                    <small><%= simple_format most_recent_image.created_at.to_formatted_s(:long), class: 'text-muted' %></small>
+                  <% end %>
+              </div>
+            <% end %>
+
+        </div>
+    </div>
+
+</div>

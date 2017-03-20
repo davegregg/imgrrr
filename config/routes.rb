@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
 
-  resources :users, shallow: true do
-    resources :galleries do
-      resources :images
-    end
-  end
+  resources :users
+  resources :galleries
+  resources :images
+  get '/galleries/:gallery_id/images/:image_id' => 'images#context'
 
-  root                'users#index'
+  root                'session#stage'
   get    '/login'  => 'session#new'
   post   '/login'  => 'session#create'
-  delete '/logout' => 'session#destroy'
+  get    '/logout' => 'session#destroy'
+
+  # post   '/galleries/:gallery_id/images/:image_id/add(.:format)'
+  ## may not need this, could maybe use images#edit or galleries#edit
 
 end

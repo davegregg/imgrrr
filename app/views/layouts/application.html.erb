@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Imgrrr</title>
-    <%= csrf_meta_tags %>
+    <head>
+        <title><%= @title %></title>
+        <%= csrf_meta_tags %>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
+    <body>
+        <%= render partial: 'nav'    %>
+        <%= render partial: 'header' if request.env['PATH_INFO'] == root_path %>
+        <%= render partial: 'core'   %>
+        <%= render partial: 'footer' %>
+    </body>
 </html>

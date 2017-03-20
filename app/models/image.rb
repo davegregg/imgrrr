@@ -2,6 +2,7 @@ class Image < ApplicationRecord
 
   has_many :imagings
   has_many :galleries, through: :imagings
+  belongs_to :user
 
   validates :file, presence: true
   has_attached_file :file, styles: { medium: "300x300>", thumb: "100x100>" }

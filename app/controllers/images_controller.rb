@@ -1,16 +1,59 @@
 class ImagesController < ApplicationController
 
   def index
-    # @images = Image.all.file
-    #must figure out what sort of object #file is and how to handle it
-    #psudo code shit
-    #seed users
+    @images = Image.all
   end
 
   def show; end
 
-  def new; end
+  def context
+    gallery_id = params[:gallery_id]
+    image_id = params[:image_id]
+    if Gallery.pluck(:id).include? gallery_id
+      gallery = Gallery.find(gallery_id)
+      if gallery.images.pluck(:id).include? image_id
+        @image = images.find(image_id)
+      end
+    else
+      redirect_to '/'         #TODO: refactor: render error
+    end
+  end
 
-  def create; end
+  def new
+    @image = Image.new
+  end
+
+  def create
+    @image = current_user.images.new(image_params)
+    if @image.save
+      galleries = params[:image][:gallery_ids].reject { |g| g.to_s.empty? }
+      galleries.each do |g|
+        target_gallery = Gallery.find(g)
+        if target_gallery.user == current_user
+          target_gallery.images << @image
+          target_gallery.save
+        else
+          redirect_to '/logout'
+        end
+      end
+      redirect_to @image
+    else
+      render :new
+    end
+  end
+
+  private
+
+  helper_method def images
+    @images ||= Image.all
+  end
+
+  helper_method def image
+    @image ||= images.find(params[:id])
+  end
+
+  def image_params
+    params.require(:image).permit(:title, :caption, :file, :gallery_ids)
+  end
 
 end

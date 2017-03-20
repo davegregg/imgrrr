@@ -1,17 +1,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-// @import "globals";
-// @import "nav";
-// @import "header";
-// @import "core";
-// @import "footer";
-
+@import "globals";
+@import "nav";
+@import "header";
+@import "core";
+@import "footer";
 
 /*
     Design
     Guides
             */
-
+//
 // #site-header * {
 //   border: dashed 1px green;
 // }
