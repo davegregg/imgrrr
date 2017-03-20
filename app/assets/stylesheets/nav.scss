@@ -1,0 +1,19 @@
+.navbar {
+    z-index: 10;
+    width: 100%;
+    top: 0;
+    position: fixed;
+}
+
+.navbar-brand {
+    width: 50px;
+}
+
+.navbar-header {
+    display: flex;
+    align-items: center;
+
+    em {
+      text-align: right;
+    }
+}

@@ -1,0 +1,7 @@
+<% users.each do |u| %>
+  <div class="col-md-3 col-sm-6">
+    <%= link_to u, class: "btn btn-default" do %>
+      <%= image_tag u.avatar, class: "img-responsive" %>
+    <% end %>
+  </div>
+<% end %>

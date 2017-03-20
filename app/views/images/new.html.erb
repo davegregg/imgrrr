@@ -1,0 +1,11 @@
+<%= simple_form_for image do |f| %>
+  <%= f.input  :title %>
+  <%= f.input  :caption, as: :text %>
+  <%= f.input  :file, as: :file %>
+  <%= f.association :galleries %>
+  <%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>
+
+<!--
+have to set up a form which "gets"
+the new_image route and turns it into a post  -->

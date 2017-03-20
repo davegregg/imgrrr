@@ -1,0 +1,7 @@
+<% images.each do |i| %>
+  <div class="col-md-3 col-sm-6">
+    <%= link_to i, class: "btn btn-default" do %>
+      <%= simple_format i.title %>
+    <% end %>
+  </div>
+<% end %>

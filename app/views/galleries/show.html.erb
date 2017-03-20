@@ -1,0 +1,13 @@
+<h1><%= gallery.title %></h1>
+<% if !gallery.images %>
+    This gallery is empty. Fill it with your best slow loris photos!
+<% else %>
+  <% gallery.images.each do |i| %>
+    <div class="col-lg-3 text-center">
+      <%= link_to i, class: 'thumbnail' do %>
+        <%= image_tag i.file.url(:thumb), class: 'img-responsive' %>
+        <%= simple_format i.title, class: 'caption' %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

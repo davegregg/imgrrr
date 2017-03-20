@@ -1,3 +1,16 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :users
+  resources :galleries
+  resources :images
+  get '/galleries/:gallery_id/images/:image_id' => 'images#context'
+
+  root                'session#stage'
+  get    '/login'  => 'session#new'
+  post   '/login'  => 'session#create'
+  get    '/logout' => 'session#destroy'
+
+  # post   '/galleries/:gallery_id/images/:image_id/add(.:format)'
+  ## may not need this, could maybe use images#edit or galleries#edit
+
 end
