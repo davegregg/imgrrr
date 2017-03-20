@@ -19,10 +19,10 @@ require 'addressable/uri'
     3.times do
       fake_image = Image.new(
         title: FFaker::CheesyLingo.title,
-        caption: FFaker::CheesyLingo.sentence
+        caption: FFaker::CheesyLingo.sentence,
+        user: fake_user
       )
       fake_image.file_remote_url = Unsplash::Photo.random.urls.regular
-      fake_image.save!
       fake_gallery.images << fake_image
       fake_gallery.save!
     end
