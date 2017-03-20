@@ -23,7 +23,7 @@ class GalleriesController < ApplicationController
   end
 
   private
-
+  
   helper_method def galleries
     @galleries ||= User.find(session[:user_id]).galleries.all
   end

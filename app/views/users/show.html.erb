@@ -6,7 +6,7 @@
               <%= image_tag user.avatar, class: 'img-responsive' %>
             <% end %>
             <h3><strong>&ldquo;</strong><%= user.username %><strong>&rdquo;</strong></h3>
-            <%= flash[:success] if flash[:success] %>
+            <%= simple_format flash[:success], class: 'bg-success' if flash[:success] %>
         </div>
         <div class="col-lg-9">
 
@@ -17,7 +17,7 @@
                     <%  most_recent_image = g.images.last %>
                     <%= image_tag most_recent_image.file.url(:thumb), class: 'img-responsive' %>
                     <%= simple_format most_recent_image.title, class: 'caption' %>
-                    <small><%= simple_format most_recent_image.created_at.to_formatted_s(:long), class: 'text-muted' %></small>
+                    <small><%= simple_format distance_of_time_in_words(most_recent_image.created_at, Time.now), class: 'text-muted' %></small>
                   <% end %>
               </div>
             <% end %>
