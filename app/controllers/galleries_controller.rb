@@ -5,7 +5,9 @@ class GalleriesController < ApplicationController
     redirect_to User.all.sample
   end
 
-  def show; end
+  def show
+    @gallery = Gallery.includes(:images).find(params[:id])
+  end
 
   def new
     @gallery = Gallery.new
@@ -28,7 +30,7 @@ class GalleriesController < ApplicationController
 
   helper_method def gallery
     # @gallery ||= galleries.find_by(user_id: params[:id])
-    @gallery ||= User.find(session[:user_id]).galleries.find(params[:id])
+    @gallery ||= User.find(session[:user_id]).galleries.includes(:images).find(params[:id])
   end
 
   def gallery_params

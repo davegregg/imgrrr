@@ -4,18 +4,19 @@ class ImagesController < ApplicationController
     @images = Image.all
   end
 
-  def show; end
-
-  def context
-    gallery_id = params[:gallery_id]
-    image_id = params[:image_id]
-    if Gallery.pluck(:id).include? gallery_id
-      gallery = Gallery.find(gallery_id)
-      if gallery.images.pluck(:id).include? image_id
-        @image = images.find(image_id)
+  def show
+    if params[:gallery_id]
+      gallery_id = params[:gallery_id].to_i
+      image_id = params[:id].to_i
+      if Gallery.pluck(:id).include? gallery_id
+        gallery = Gallery.find(gallery_id)
+        if gallery.images.pluck(:id).include? image_id
+          @image = images.find(image_id)
+          render template: 'images/context'
+        end
+      else
+        redirect_to '/'         #TODO: refactor: render error
       end
-    else
-      redirect_to '/'         #TODO: refactor: render error
     end
   end
 

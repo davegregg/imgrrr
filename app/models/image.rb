@@ -1,5 +1,7 @@
 class Image < ApplicationRecord
 
+  attr_reader :file_remote_url
+
   has_many :imagings
   has_many :galleries, through: :imagings
   belongs_to :user
@@ -9,5 +11,10 @@ class Image < ApplicationRecord
   validates_attachment_content_type :file, content_type: /\Aimage\/.*\z/
 
   default_scope { order(created_at: :desc) }
+
+  def file_remote_url=(url)
+    self.file = URI.parse(url)
+    @file_remote_url = url
+  end
 
 end

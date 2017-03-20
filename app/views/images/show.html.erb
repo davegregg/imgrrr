@@ -3,4 +3,7 @@
     <%= simple_format image.title %>
     <%= image_tag image.file.url(:medium) %>
   <% end %>
+  <% image.galleries.each do |g| %>
+    <%= link_to g.title, g %>
+  <% end %>
 </div>
