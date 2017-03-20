@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
   resources :users
-  resources :galleries
+  resources :galleries do
+    resources :images, only: [:show]
+  end
   resources :images
-  get '/galleries/:gallery_id/images/:image_id' => 'images#context'
 
   root                'session#stage'
   get    '/login'  => 'session#new'

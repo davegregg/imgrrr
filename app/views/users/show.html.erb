@@ -13,7 +13,7 @@
               <div class="col-lg-3 text-center">
                   <%= link_to g, {class: 'thumbnail', target: '_blank'} do %>
                     <%= simple_format g.title, class: 'bg-primary' %>
-                    <% most_recent_image = g.images.last %>
+                    <%  most_recent_image = g.images.last %>
                     <%= image_tag most_recent_image.file.url(:thumb), class: 'img-responsive' %>
                     <%= simple_format most_recent_image.title, class: 'caption' %>
                     <small><%= simple_format most_recent_image.created_at.to_formatted_s(:long), class: 'text-muted' %></small>

@@ -46,6 +46,7 @@ gem 'aws-sdk', '~> 2.3'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'simple_form'
 
+gem 'addressable'
 gem 'unsplash'
 gem 'ffaker'
 
