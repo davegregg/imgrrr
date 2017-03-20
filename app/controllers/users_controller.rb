@@ -11,7 +11,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      UserMailer.signup(@user).deliver
       session[:user_id] = @user.id
+      flash[:success] = 'Yay! You\'ve successfully given up some private information! Expect a creepy email from us confirming your admission into the mainframe.'
       redirect_to @user
     else
       render :new

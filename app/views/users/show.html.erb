@@ -6,6 +6,7 @@
               <%= image_tag user.avatar, class: 'img-responsive' %>
             <% end %>
             <h3><strong>&ldquo;</strong><%= user.username %><strong>&rdquo;</strong></h3>
+            <%= flash[:success] if flash[:success] %>
         </div>
         <div class="col-lg-9">
 
