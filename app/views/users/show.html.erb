@@ -16,7 +16,7 @@
                     <%= simple_format g.title, class: 'bg-primary' %>
                     <%  most_recent_image = g.images.last %>
                     <%= image_tag most_recent_image.file.url(:thumb), class: 'img-responsive' %>
-                    <%= simple_format most_recent_image.title, class: 'caption' %>
+                    <%= simple_format g.description, class: 'caption' %>
                     <small><%= simple_format distance_of_time_in_words(most_recent_image.created_at, Time.now), class: 'text-muted' %></small>
                   <% end %>
               </div>

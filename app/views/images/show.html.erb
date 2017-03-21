@@ -4,6 +4,6 @@
     <%= image_tag image.file.url(:medium) %>
   <% end %>
   <% image.galleries.each do |g| %>
-    <%= link_to g.title, g %>
+    <%= link_to g.title, g, class: 'bg-info' %>
   <% end %>
 </div>

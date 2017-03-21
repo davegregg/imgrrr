@@ -1,9 +1,5 @@
 class GalleriesController < ApplicationController
-  before_action :require_user, only: [:new, :create, :destroy]
-
-  def index
-    redirect_to User.all.sample
-  end
+  before_action :require_user, only: [:new, :create, :share, :edit, :update, :destroy]
 
   def show
     @gallery = Gallery.includes(:images).find(params[:id])
@@ -22,8 +18,48 @@ class GalleriesController < ApplicationController
     end
   end
 
+  # def sharing_prompt
+  #   respond_to do |format|
+  #     format.html
+  #     format.js
+  #   end
+  # end
+  #TODO: Create shares controller, for distinct new/create actions and the magic that follow on their heels
+
+  def share
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def edit; end
+
+  def update
+    case params[:commit]
+    when 'Update Gallery'
+      gallery.update!(gallery_params)
+    when 'Delete Gallery'
+      destroy
+    end
+    redirect_to current_user
+  end
+
+  def destroy
+    gallery.images.each do |image|
+      member_galleries = Image.find(image.id).galleries
+      if member_galleries.count > 1
+        gallery.images.delete(image.id)
+      else
+        Imaging.find_by(image_id: image.id).delete
+        Image.find(image.id).delete
+      end
+    end
+    gallery.destroy!
+  end
+
   private
-  
+
   helper_method def galleries
     @galleries ||= User.find(session[:user_id]).galleries.all
   end

@@ -5,12 +5,25 @@
   <% gallery.images.each do |i| %>
     <div class="col-lg-3 text-center">
       <%= link_to i, class: 'thumbnail' do %>
-        <%= image_tag i.file.url(:thumb), class: 'img-responsive' %>
         <%= simple_format i.title, class: 'caption' %>
+        <%= image_tag i.file.url(:thumb), class: 'img-responsive' %>
+        <%= simple_format i.caption, class: 'caption' %>
       <% end %>
     </div>
   <% end %>
   <%= link_to '/images/new' do %>
     <button class="btn btn-primary">Add</button>
   <% end %>
+  <%= link_to share_gallery_path, remote: true do %>
+    <button class="btn btn-default">Share</button>
+  <% end %>
+  <div id="share-form" style="display: none;">
+    dSDSlkdSLKDLKds
+    <%#= simple_form_for gallery, url: share_gallery_path(format: :json), remote: true do |f| %>
+    <%#= simple_form_for gallery, url: share_gallery_path(format: :json), remote: true do |f| %>
+      <%#= f.error_notification %>
+      <%#= f.input  %>
+      <%#= f.submit %>
+    <%# end %>
+  </div>
 <% end %>

@@ -7,11 +7,13 @@
       <%= link_to i, class: 'thumbnail' do %>
         <%= image_tag i.file.url(:thumb), class: 'img-responsive' %>
         <%= simple_format i.title, class: 'caption' %>
-        <%= simple_form_for gallery do |g| %>
-          <%= g.button 'Edit', as: :submit, class: "btn btn-primary"%>
-          <%= g.button 'Delete', as: :submit, class: "btn btn-danger"%>
-        <% end %>
       <% end %>
     </div>
+  <% end %>
+  <%= simple_form_for gallery do |g| %>
+    <%= g.input  :title %>
+    <%= g.input  :description, as: :text %>
+    <%= g.button :submit, 'Update Gallery', class: 'btn btn-primary' %>
+    <%= g.button :submit, 'Delete Gallery', class: 'btn btn-danger' %>
   <% end %>
 <% end %>
