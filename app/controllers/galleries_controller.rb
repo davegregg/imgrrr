@@ -1,12 +1,22 @@
 class GalleriesController < ApplicationController
-  before_action :require_user, only: [:new, :create, :share, :edit, :update, :destroy]
+  before_action :require_user, only: [:new, :create, :create_share, :edit, :update, :destroy]
 
   def show
+    # @gallery_mailer = GalleryMailer.new()
     @gallery = Gallery.includes(:images).find(params[:id])
   end
 
   def new
     @gallery = Gallery.new
+  end
+
+  def create_share
+    GalleryMailer.share(params[:gallery_mailer][:recipient_name], params[:gallery_mailer][:recipient_email], params[:gallery_mailer][:gallery_url], current_user).deliver
+    respond_to do |format|
+      format.html # send html back
+      format.js # send javascript
+    end
+    # flash[:success] = 'Yay! You\'ve successfully given up some private information! Expect a creepy email from us confirming your admission into the mainframe.'
   end
 
   def create
@@ -15,21 +25,6 @@ class GalleriesController < ApplicationController
       redirect_to @gallery
     else
       render :new
-    end
-  end
-
-  # def sharing_prompt
-  #   respond_to do |format|
-  #     format.html
-  #     format.js
-  #   end
-  # end
-  #TODO: Create shares controller, for distinct new/create actions and the magic that follow on their heels
-
-  def share
-    respond_to do |format|
-      format.html
-      format.js
     end
   end
 

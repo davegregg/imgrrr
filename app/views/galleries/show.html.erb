@@ -14,16 +14,10 @@
   <%= link_to '/images/new' do %>
     <button class="btn btn-primary">Add</button>
   <% end %>
-  <%= link_to share_gallery_path, remote: true do %>
-    <button class="btn btn-default">Share</button>
+  <%= link_to "#share_modal", title: 'Share Gallery', class: 'btn btn-info btn-sm', data: {toggle: 'modal'} do%>
+     <i class="glyphicon glyphicon-share"></i>&nbsp;Share Gallery
   <% end %>
-  <div id="share-form" style="display: none;">
-    dSDSlkdSLKDLKds
-    <%#= simple_form_for gallery, url: share_gallery_path(format: :json), remote: true do |f| %>
-    <%#= simple_form_for gallery, url: share_gallery_path(format: :json), remote: true do |f| %>
-      <%#= f.error_notification %>
-      <%#= f.input  %>
-      <%#= f.submit %>
-    <%# end %>
-  </div>
+
+  <%= render 'share_modal' %>
+
 <% end %>
